@@ -34,17 +34,13 @@
           Agenda Rapat
         </router-link>
 
-        <router-link 
-          to="/"
-          class="px-6 py-4 text-white transition-colors flex items-center gap-2"
-          :class="{
-            'bg-blue-800 font-bold': $route.path === '/',
-            'hover:bg-blue-700': $route.path !== '/'
-          }"
+        <button 
+          @click="handleLogout"
+          class="px-6 py-4 text-white transition-colors flex items-center gap-2 w-full text-left hover:bg-blue-700"
         >
           <LogOut class="w-4 h-4" />
           Keluar
-        </router-link>
+        </button>
       </div>
     </nav>
   </aside>
@@ -52,4 +48,14 @@
 
 <script setup>
 import { LayoutDashboard, Calendar, LogOut } from 'lucide-vue-next'
+import { useAuth } from '@/composables/useAuth'
+
+const { logout } = useAuth()
+
+const handleLogout = async () => {
+  // Optional: Tambahkan konfirmasi sebelum logout
+  if (confirm('Apakah Anda yakin ingin keluar?')) {
+    await logout()
+  }
+}
 </script>
