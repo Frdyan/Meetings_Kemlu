@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { meetingService } from '@/services/meeting.services';
+import DashboardStats from './DashboardStats.vue';
 
 const latestMeetings = ref([]);
 const loading = ref(true);
@@ -20,7 +21,9 @@ onMounted(async () => {
 </script>
 
 <template>
+
   <div class="p-6">
+    <DashboardStats :latestMeetings="latestMeetings" />
     <div class="bg-white rounded-lg shadow-lg">
       <div class="px-6 py-4 border-b border-gray-200">
         <div class="flex justify-between items-center">
@@ -64,7 +67,8 @@ onMounted(async () => {
               :class="{
                 'bg-yellow-100 text-yellow-800': meeting.status === 'Scheduled',
                 'bg-green-100 text-green-800': meeting.status === 'Completed',
-                'bg-blue-100 text-blue-800': meeting.status === 'In Progress'
+                'bg-blue-100 text-blue-800': meeting.status === 'In Progress',
+                'bg-red-100 text-red-800': meeting.status === 'Cancelled'
               }"
             >
               {{ meeting.status }}
@@ -74,4 +78,5 @@ onMounted(async () => {
       </div>
     </div>
   </div>
+
 </template>

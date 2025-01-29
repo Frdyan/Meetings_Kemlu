@@ -29,8 +29,8 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <header class="p-4" :class="isDashboard ? 'bg-white text-white' : 'bg-white'">
-    <div class="container mx-auto flex items-center justify-between">
+  <header class="h-20 p-4" :class="isDashboard ? 'bg-white text-white' : 'bg-white'">
+    <div class="container mx-auto flex items-center justify-between h-full">
       <img :src="logo" alt="Logo" class="h-12" />
       <div v-if="isDashboard" class="flex items-center space-x-4">
         <span class="text-black">Selamat Datang, {{ userName }}</span>
